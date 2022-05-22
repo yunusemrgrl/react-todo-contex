@@ -8,7 +8,13 @@ export const TodoProvider = ({ children }) => {
   const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
-    console.log(todo);
+    const items = JSON.parse(localStorage.getItem('list'));
+    if (items !== null) {
+      setTodo(items);
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(todo));
   }, [todo]);
 
   const values = {
@@ -17,6 +23,7 @@ export const TodoProvider = ({ children }) => {
     setTodo,
     setCompleted,
   };
+
   return (
     <TodoContext.Provider value={values}>
       {children}

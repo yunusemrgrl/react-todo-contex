@@ -6,9 +6,8 @@ const setBackDefault = {
   id: '',
 };
 function TodoForm() {
-  const { todo, setTodo, completed } =
-    useTodo(setBackDefault);
-  const [form, setForm] = useState('');
+  const { todo, setTodo, completed } = useTodo();
+  const [form, setForm] = useState(setBackDefault);
 
   const id = new Date().getTime().toString();
 
@@ -18,9 +17,10 @@ function TodoForm() {
 
   const formSubmit = (e) => {
     e.preventDefault();
-    console.log(form.text);
 
-    return setTodo([...todo, form]);
+    if (form.text.trim() !== '') {
+      return setTodo([...todo, form]);
+    }
   };
   const formChange = (e) => {
     setForm({
@@ -31,14 +31,16 @@ function TodoForm() {
     });
   };
   return (
-    <form onSubmit={formSubmit}>
-      <input
-        name="text"
-        value={form.text}
-        onChange={formChange}
-      />
-      <button type="submit">Add</button>
-    </form>
+    <header>
+      <form onSubmit={formSubmit}>
+        <input
+          name="text"
+          value={form.text}
+          onChange={formChange}
+        />
+        <button type="submit">Add</button>
+      </form>
+    </header>
   );
 }
 

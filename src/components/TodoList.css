@@ -1,0 +1,46 @@
+ul {
+  position: relative;
+  list-style: none;
+  width: 100%;
+  margin-top: 20px;
+}
+ul li {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  line-height: 40px;
+}
+ul li + li {
+  margin-top: 15px;
+}
+
+.todo-list li .icon {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto 0;
+  padding: 10px;
+  font-size: 20px;
+  color: #cc9a9a;
+  transition: color 0.2s ease-out;
+}
+
+.todo-list li .editBtn {
+  right: 45px;
+}
+
+.todo-list li .icon:hover {
+  color: #af5b5e;
+}
+
+.todo-list li:hover .icon {
+  display: block;
+}
+
+label {
+  margin-left: 1rem;
+}
