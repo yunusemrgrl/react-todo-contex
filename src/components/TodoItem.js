@@ -9,7 +9,7 @@ import { useTodo } from '../context/TodoContext';
 function TodoItem({ item }) {
   const { todo, setTodo } = useTodo();
   const [editFlag, setEditFlag] = useState(false);
-  const [newValue, setNewValue] = useState();
+  const [newValue, setNewValue] = useState('');
   const newId = new Date().getTime().toString();
 
   const handleEdit = () => {
@@ -25,18 +25,19 @@ function TodoItem({ item }) {
   };
 
   const handleSubmit = (id) => {
-    if (newValue.trim() !== '') {
+    if (newValue.trim() !== '' && item.text !== newValue) {
       todo.forEach((item) => {
         if (item.id !== id) {
           setTodo([...todo]);
         } else {
-          console.log(item);
           item.text = newValue;
           item.id = newId;
         }
       });
       setEditFlag(false);
       return setTodo([...todo]);
+    } else {
+      alert('already has been');
     }
   };
 
@@ -67,12 +68,15 @@ function TodoItem({ item }) {
             name="text"
             value={newValue ? newValue : item.text}
             onChange={(e) => handleChange(e, item.text)}
+            autoComplete="off"
           />
           <div className="icons">
             <FontAwesomeIcon
               className="icon okey"
               icon={faCheckCircle}
-              onClick={() => handleSubmit(item.id)}
+              onClick={() =>
+                handleSubmit(item.id, item.text)
+              }
             />
           </div>
         </>

@@ -5,7 +5,7 @@ const TodoList = () => {
   const { todo } = useTodo();
 
   return (
-    <main>
+    <main className="content">
       <ul className="todo-list">
         {todo.map((item, index) => (
           <TodoItem item={item} key={index} />

@@ -6,27 +6,28 @@ ul {
 }
 ul li {
   position: relative;
-
   display: flex;
   align-items: center;
   font-size: 20px;
   line-height: 40px;
+  width: 100%;
+  border: 1px solid;
 }
 ul li + li {
   margin-top: 15px;
 }
 
 .todo-list li .icon {
-  display: block;
+  display: none;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   margin: auto 0;
   padding: 10px;
-  font-size: 20px;
+  font-size: 25px;
   color: #cc9a9a;
-  transition: color 0.2s ease-out;
+  transition: 0.2s ease-out;
 }
 
 .todo-list li .editBtn {
@@ -43,4 +44,7 @@ ul li + li {
 
 label {
   margin-left: 1rem;
+}
+.todo-item-text {
+  width: 100%;
 }
