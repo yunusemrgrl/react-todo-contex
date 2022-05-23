@@ -23,6 +23,19 @@ function TodoItem({ item }) {
   const handleChange = (e) => {
     setNewValue(e.target.value);
   };
+  const handleCheck = (id) => {
+    todo.forEach((item) => {
+      if (item.id !== id) {
+        setTodo([...todo]);
+      } else {
+        if (item.isCompleted === false) {
+          item.isCompleted = true;
+        } else {
+          item.isCompleted = false;
+        }
+      }
+    });
+  };
 
   const handleSubmit = (id) => {
     if (newValue.trim() !== '' && item.text !== newValue) {
@@ -42,9 +55,29 @@ function TodoItem({ item }) {
   };
 
   return (
-    <li className="todo-item">
+    <li
+      className={
+        !item.isCompleted
+          ? 'todo-item'
+          : 'todo-item checked'
+      }
+    >
       {!editFlag && (
         <>
+          <div className="chexbox">
+            {!item.isCompleted ? (
+              <input
+                type="checkbox"
+                onClick={() => handleCheck(item.id)}
+              />
+            ) : (
+              <input
+                type="checkbox"
+                onClick={() => handleCheck(item.id)}
+                defaultChecked
+              />
+            )}
+          </div>
           <label className="todo-item-text">
             {item.text}
           </label>
@@ -74,6 +107,9 @@ function TodoItem({ item }) {
             <FontAwesomeIcon
               className="icon okey"
               icon={faCheckCircle}
+              onSubmit={() =>
+                handleSubmit(item.id, item.text)
+              }
               onClick={() =>
                 handleSubmit(item.id, item.text)
               }

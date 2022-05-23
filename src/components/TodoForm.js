@@ -3,12 +3,13 @@ import { useTodo } from '../context/TodoContext';
 import './TodoForm.css';
 
 const setBackDefault = {
+  isCompleted: false,
   text: '',
   id: '',
 };
 
 function TodoForm() {
-  const { todo, setTodo, completed } = useTodo();
+  const { todo, setTodo } = useTodo();
   const [form, setForm] = useState(setBackDefault);
 
   const id = new Date().getTime().toString();
@@ -41,7 +42,7 @@ function TodoForm() {
       ...form,
       id: id,
       text: e.target.value,
-      isCompleted: completed,
+      isCompleted: false,
     });
   };
   return (

@@ -5,7 +5,6 @@ const TodoContext = createContext();
 
 export const TodoProvider = ({ children }) => {
   const [todo, setTodo] = useState([]);
-  const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('list'));
@@ -19,9 +18,7 @@ export const TodoProvider = ({ children }) => {
 
   const values = {
     todo,
-    completed,
     setTodo,
-    setCompleted,
   };
 
   return (
